@@ -1,24 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import Editor, { monaco } from "@monaco-editor/react";
+monaco
+  .init()
+  .then(monaco => {
+    /* here is the instance of monaco, so you can use the `monaco.languages` or whatever you want */
+    console.log("Log ::: Monaco ::: ", monaco);
+  })
+  .catch(error =>
+    console.error("An error occurred during initialization of Monaco: ", error)
+  );
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Editor height="90vh" language="javascript" />;
     </div>
   );
 }

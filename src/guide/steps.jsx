@@ -1,8 +1,15 @@
 import React from 'react';
 import { CheckboxGroup } from 'react-rainbow-components';
+import Editor from "../editor/editor";
 
 const options = [
-    { value: 'checkboxOne', label: 'Checkbox One', disabled: false },
+    {
+        value: 'checkboxOne', label:
+        <div>
+        <Editor language="javascript" height="3vh" code="Hello World!" />
+        </div>
+        , disabled: false
+    },
     { value: 'checkboxTwo', label: 'Checkbox Two', disabled: false },
     { value: 'checkboxThree', label: 'Checkbox Three', disabled: false },
 ];

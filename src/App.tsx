@@ -27,7 +27,7 @@ const App: React.FC = () => {
     <>
       <div className="App">
         <div className="editor">
-      <div className="rainbow-flex rainbow-flex_column rainbow_vertical-stretch" style={{ maxWidth: "30%", }} >
+      <div className="rainbow-flex rainbow-flex_column rainbow_vertical-stretch" style={{ maxWidth: "50%", }} >
         <Tabset
           fullWidth
           id="tabset-2"

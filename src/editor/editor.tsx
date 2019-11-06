@@ -16,7 +16,7 @@ const editor = monaco
 function LocalEditor(props: EditorPros): React.ReactElement {
     return (<>
         <div>
-            <Editor height={props.height} language={props.language} value={props.code} />
+            <Editor height={props.height} language={props.language} value={props.code} theme={"dark"} />
         </div>
 
     </>);

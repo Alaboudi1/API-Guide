@@ -7,7 +7,7 @@ class TodoApp extends React.Component {
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
-  
+
     render() {
       return (
         <div>
@@ -29,11 +29,11 @@ class TodoApp extends React.Component {
         </div>
       );
     }
-  
+
     handleChange(e) {
       this.setState({ text: e.target.value });
     }
-  
+
     handleSubmit(e) {
       e.preventDefault();
       if (!this.state.text.length) {
@@ -49,7 +49,7 @@ class TodoApp extends React.Component {
       }));
     }
   }
-  
+
   class TodoList extends React.Component {
     render() {
       return (
@@ -61,7 +61,7 @@ class TodoApp extends React.Component {
       );
     }
   }
-  
+
   ReactDOM.render(
     <TodoApp />,
     document.getElementById('todos-example')
@@ -70,11 +70,13 @@ class TodoApp extends React.Component {
 `
     ;
 
-export const config =
-    `
-const config = {
+export const config = {
+
+    steps:[
+        {"step":1}
+    ]
 
 }
 
-`
+
     ;

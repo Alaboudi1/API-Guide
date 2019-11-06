@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { Tabset, Tab } from 'react-rainbow-components';
-import { ProgressIndicatorWithError } from "./progress-bar";
 import Steps from "./steps";
 import Editor from "../editor/editor";
 
+type Iprops = {
+    config: Object
+}
 
-function ApiGuide() {
+function ApiGuide(props: Iprops) {
     const [selected, changeSelected] = useState('Todo');
     const handleOnSelect = (event: React.MouseEvent<HTMLElement, MouseEvent>, selected: string) => {
         changeSelected(selected)
     }
+    console.log(props.config)
     return (
         <div className="rainbow-flex rainbow-flex_column rainbow_vertical-stretch" style={{ minWidth: "500px", }} >
             <Tabset
@@ -39,9 +42,7 @@ function ApiGuide() {
                     }
                 />
             </Tabset>
-            <Steps/>
-            <ProgressIndicatorWithError />;
-            <Editor language="javascript" height="3vh" code="Hello World!" />
+            <Steps />
         </div>
     )
 }

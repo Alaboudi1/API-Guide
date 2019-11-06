@@ -4,7 +4,7 @@ interface EditorPros {
     language: string,
     width?: string,
     height?: string
-    code: string
+    value: string
 }
 const editor = monaco
     .init()
@@ -16,7 +16,7 @@ const editor = monaco
 function LocalEditor(props: EditorPros): React.ReactElement {
     return (<>
         <div>
-            <Editor height={props.height} language={props.language} value={props.code} theme={"dark"} />
+            <Editor {...props} theme={"dark"} />
         </div>
 
     </>);

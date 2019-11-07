@@ -1,5 +1,8 @@
+import { Interface } from "readline";
+import { string } from "prop-types";
+
 export const code =
-    `
+  `
 class TodoApp extends React.Component {
     constructor(props) {
       super(props);
@@ -68,15 +71,80 @@ class TodoApp extends React.Component {
   );
 
 `
-    ;
-
-export const config = {
-
-    steps:[
-        {"step":1}
-    ]
-
-}
+  ;
 
 
-    ;
+export const config: Iconfig = {
+  steps: [
+    {
+      checks: [
+        {
+          checkText: "Make sure that your code is producing the expected outputs."
+        },
+        {
+          checkText: " Import useState at the top of your file.",
+
+          code: {
+            before: "import React from 'react';",
+            after: "import React, { useState } from 'react';"
+          }
+        }
+      ],
+      relatedAPIs: [
+        "Import React"
+      ]
+    },
+    {
+      checks: [
+        {
+          checkText: "Replace the class keywords with function.",
+          code: {
+            before: "class X extends React.Component{} ",
+            after: "function X() "
+          }
+        },
+        {
+          checkText: "Replace each of your component state properties with useState. ",
+
+          code: {
+            before: `this.state = { property: ' ' };\nthis.handlePropertyChange = this.handlePropertyChange .bind(this);`,
+            after: "const [property, handlePropertyChange ] = useState(' ');"
+          }
+        }
+      ],
+      warning: [
+        "The argument passed to useState is the initial value for the property. "
+      ],
+      relatedAPIs: [
+        "React.Component",
+        "this.state",
+        ".bind"
+      ]
+    },
+    {
+      checks: [
+        {
+          checkText: "Replace each of the component life cycle methods with useEffect.",
+          code: {
+            before: `componentDidUpdate() {
+              localStorage.setItem('myValueInLocalStorage', this.state.value);`,
+            after: `React.useEffect(() => {
+              localStorage.setItem('myValueInLocalStorage', value);
+            } [value]);`
+          }
+        }
+      ],
+      warning: [
+        "The second argument in useEffect is how you access the current state."
+      ],
+      relatedAPIs: [
+        "componentDidUpdate",
+      ]
+    }
+
+  ],
+  done: [
+
+  ]
+
+};

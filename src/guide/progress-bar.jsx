@@ -10,24 +10,25 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
-const stepNames = ['step-1', 'step-2', 'step-3', 'step-4', 'step-5'];
 
-const steps = ['first', 'second', 'third', 'fourth', 'fifth'];
 
 export class ProgressIndicatorWithError extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentStepIndex: 1,
+            currentStepIndex: 0,
         };
+        this.stepNames = props.steps.map((_, index) => `step-${index}`);
+         console.log(props.steps)
         this.handleNextClick = this.handleNextClick.bind(this);
         this.handleBackClick = this.handleBackClick.bind(this);
     }
 
     handleNextClick() {
         const { currentStepIndex } = this.state;
-        if (currentStepIndex < stepNames.length - 1) {
+        if (currentStepIndex < this.stepNames.length - 1) {
             const nextStepIndex = currentStepIndex + 1;
+            this.props.changeStep(nextStepIndex);
             return this.setState({ currentStepIndex: nextStepIndex });
         }
         return this.setState({ isNextDisabled: false });
@@ -37,13 +38,14 @@ export class ProgressIndicatorWithError extends React.Component {
         const { currentStepIndex } = this.state;
         if (currentStepIndex > 0) {
             const previewStepIndex = currentStepIndex - 1;
+            this.props.changeStep(previewStepIndex);
             this.setState({ currentStepIndex: previewStepIndex });
         }
     }
 
     isNextDisabled() {
         const { currentStepIndex } = this.state;
-        if (currentStepIndex < stepNames.length - 1 && currentStepIndex >= 0) {
+        if (currentStepIndex < this.stepNames.length - 1 && currentStepIndex >= 0) {
             return false;
         }
         return true;
@@ -51,7 +53,7 @@ export class ProgressIndicatorWithError extends React.Component {
 
     isBackDisabled() {
         const { currentStepIndex } = this.state;
-        if (currentStepIndex > 0 && currentStepIndex < stepNames.length) {
+        if (currentStepIndex > 0 && currentStepIndex < this.stepNames.length) {
             return false;
         }
         return true;
@@ -59,19 +61,18 @@ export class ProgressIndicatorWithError extends React.Component {
 
     render() {
         const { currentStepIndex } = this.state;
+
         return (
             <div className="rainbow-m-bottom_large rainbow-p-bottom_large">
 
-                <ProgressIndicator currentStepName={stepNames[currentStepIndex]}>
-                    <ProgressStep name="step-1" label="Step 1" />
-                    <ProgressStep name="step-2" label="Step 2" />
-                    <ProgressStep name="step-3" label="Step 3" hasError />
-                    <ProgressStep name="step-4" label="Step 4" />
-                    <ProgressStep name="step-5" label="Step 5" />
+                <ProgressIndicator currentStepName={this.stepNames[currentStepIndex]}>
+                    {this.props.steps.map((done, index) => (
+                        <ProgressStep name={`step-${index}`} label={`Step ${index}`} hasError={done} />
+                    ))}
                 </ProgressIndicator>
-                <div className="rainbow-m-top_xx-large rainbow-align-content_center rainbow-flex_wrap">
+                {/* <div className="rainbow-m-top_xx-large rainbow-align-content_center rainbow-flex_wrap">
                     <p>{`This is the ${steps[currentStepIndex]} step`}</p>
-                </div>
+                </div> */}
                 <div className="rainbow-m-top_xx-large rainbow-align-content_center rainbow-flex_wrap">
                     <Button
                         label="Back"

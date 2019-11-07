@@ -1,20 +1,29 @@
 import React, { useState } from "react";
 import { Tabset, Tab } from 'react-rainbow-components';
 import Steps from "./steps";
-import Editor from "../editor/editor";
+import { ProgressIndicatorWithError } from "./progress-bar";
+import { config } from '../editor/sourceCode';
 
-type Iprops = {
-    config: Object
-}
 
-function ApiGuide(props: Iprops) {
-    const [selected, changeSelected] = useState('Todo');
+
+function ApiGuide() {
+    const [selected, changeSelected] = useState('guide');
+    const [stepIndex, changeStepIndex] = useState(0);
+    const [error, changeError] = useState(config.steps.map(_ => false));
     const handleOnSelect = (event: React.MouseEvent<HTMLElement, MouseEvent>, selected: string) => {
         changeSelected(selected)
     }
-    console.log(props.config)
+    const changeDone = (values: number) => {
+        console.log(values);
+        if (values === config.steps[stepIndex].checks.length) {
+            changeError(error.map((bol, index) => index === stepIndex ? false : bol))
+        }
+        else {
+            changeError(error.map((bol, index) => index === stepIndex ? true : bol))
+        }
+    }
     return (
-        <div className="rainbow-flex rainbow-flex_column rainbow_vertical-stretch" style={{ minWidth: "500px", }} >
+        <div className="rainbow-flex rainbow-flex_column rainbow_vertical-stretch" style={{ minWidth: "700px", }} >
             <Tabset
                 fullWidth
                 id="tabset-2"
@@ -22,7 +31,7 @@ function ApiGuide(props: Iprops) {
                 activeTabName={selected}
             >
                 <Tab
-                    name="config"
+                    name="guide"
                     label={
                         <span>
                             {/* <FontAwesomeIcon icon={faFolderOpen} />  */}
@@ -33,7 +42,7 @@ function ApiGuide(props: Iprops) {
 
                 <Tab
                     style={{ overflow: "hidden" }}
-                    name="Todo"
+                    name="help"
                     label={
                         <span>
                             {/*<FontAwesomeIcon icon={faClock} />  */}
@@ -42,7 +51,9 @@ function ApiGuide(props: Iprops) {
                     }
                 />
             </Tabset>
-            <Steps />
+            <Steps key={stepIndex} {...config.steps[stepIndex]} changeDone={changeDone} />
+            <ProgressIndicatorWithError changeStep={changeStepIndex} steps={error} />
+
         </div>
     )
 }

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Editor from "./editor/editor"
 import { code, config } from './editor/sourceCode'
 import { Tabset, Tab } from 'react-rainbow-components';
 import ApiGuide from './guide/api-guide';
-import beautify from "json-beautify"
 
 
 const App: React.FC = () => {
@@ -56,9 +54,9 @@ const App: React.FC = () => {
                             />
                         </Tabset>
                     </div>
-                    <Editor language="javascript" height="90vh" value={TextCode} />
+                    <Editor language="javascript" height="90vh" theme="dark" value={TextCode}  />
                 </div>
-                <ApiGuide config={config} />
+                <ApiGuide />
             </div>
         </>
     );

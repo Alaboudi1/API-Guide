@@ -1,22 +1,19 @@
 import Editor, { monaco } from "@monaco-editor/react";
 import React from 'react';
-interface EditorPros {
-    language: string,
-    width?: string,
-    height?: string
-    value: string
-}
-const editor = monaco
-    .init()
-    .then(monaco => monaco)
-    .catch(error =>
-        console.error("An error occurred during initialization of Monaco: ", error)
-    );
 
-function LocalEditor(props: EditorPros): React.ReactElement {
+
+function LocalEditor(props: Ieditor): React.ReactElement {
+    const editor = monaco
+        .init()
+        .then(monaco => monaco)
+        .catch(error =>
+            console.error("An error occurred during initialization of Monaco: ", error)
+        );
+
+    console.log(props)
     return (<>
         <div>
-            <Editor {...props} theme={"dark"} />
+            <Editor {...props} options={{ minimap: { enabled: false } }} />
         </div>
 
     </>);

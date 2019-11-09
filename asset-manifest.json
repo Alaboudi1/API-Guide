@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/API-Guide/static/css/main.baf74fd2.chunk.css",
+    "main.js": "/API-Guide/static/js/main.f30e6529.chunk.js",
+    "main.js.map": "/API-Guide/static/js/main.f30e6529.chunk.js.map",
+    "runtime-main.js": "/API-Guide/static/js/runtime-main.aa52ae29.js",
+    "runtime-main.js.map": "/API-Guide/static/js/runtime-main.aa52ae29.js.map",
+    "static/css/2.7dbd443a.chunk.css": "/API-Guide/static/css/2.7dbd443a.chunk.css",
+    "static/js/2.c4ddfa56.chunk.js": "/API-Guide/static/js/2.c4ddfa56.chunk.js",
+    "static/js/2.c4ddfa56.chunk.js.map": "/API-Guide/static/js/2.c4ddfa56.chunk.js.map",
+    "index.html": "/API-Guide/index.html",
+    "precache-manifest.b8b16f95aeeea0aa1472af7ea9e018ab.js": "/API-Guide/precache-manifest.b8b16f95aeeea0aa1472af7ea9e018ab.js",
+    "service-worker.js": "/API-Guide/service-worker.js",
+    "static/css/2.7dbd443a.chunk.css.map": "/API-Guide/static/css/2.7dbd443a.chunk.css.map",
+    "static/css/main.baf74fd2.chunk.css.map": "/API-Guide/static/css/main.baf74fd2.chunk.css.map",
+    "static/media/rainbow-styles.css": "/API-Guide/static/media/Lato-Regular.e9d329fb.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aa52ae29.js",
+    "static/css/2.7dbd443a.chunk.css",
+    "static/js/2.c4ddfa56.chunk.js",
+    "static/css/main.baf74fd2.chunk.css",
+    "static/js/main.f30e6529.chunk.js"
+  ]
+}

@@ -142,9 +142,6 @@ export const config: Iconfig = {
       ]
     }
 
-  ],
-  done: [
-
   ]
 
 };

@@ -37,10 +37,10 @@ function Steps(props: Istep | any): React.ReactElement {
         disabled: false
     }));
     const [checkList, changeCheckList] = useState(options)
-    const [checkedValues, changeCheckValues] = useState([])
+    const [checkedValues, changeCheckValues] = useState(props.done)
     const passCheckValues = (values: any): void => {
         changeCheckValues(values);
-        props.changeDone(values.length)
+        props.changeDoneChecklist(values)
     }
 
     return (

@@ -1,11 +1,11 @@
 interface Iconfig {
     steps: Istep[],
-    done: boolean[]
 }
 interface Istep {
     checks: Icheck[],
     warning?: string[],
     relatedAPIs?: string[]
+    done?: string[]
 
 }
 interface Icheck {

@@ -23,7 +23,6 @@ export class ProgressIndicatorWithError extends React.Component {
         this.handleNextClick = this.handleNextClick.bind(this);
         this.handleBackClick = this.handleBackClick.bind(this);
     }
-
     handleNextClick() {
         const { currentStepIndex } = this.state;
         if (currentStepIndex < this.stepNames.length - 1) {

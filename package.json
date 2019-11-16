@@ -12,6 +12,7 @@
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.3",
     "@types/react-syntax-highlighter": "^11.0.1",
+    "@types/string": "^0.0.29",
     "gh-pages": "^2.1.1",
     "json-beautify": "^1.1.1",
     "react": "^16.11.0",
@@ -19,6 +20,7 @@
     "react-rainbow-components": "^1.9.0",
     "react-scripts": "3.2.0",
     "react-syntax-highlighter": "^11.0.2",
+    "string": "^3.3.3",
     "typescript": "3.7.2"
   },
   "scripts": {

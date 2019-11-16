@@ -5,7 +5,7 @@ import { ProgressIndicatorWithError } from "./progress-bar";
 import { config } from '../editor/sourceCode';
 import './api-guide.css';
 import { monaco } from "@monaco-editor/react";
-
+import Help from "./help"
 let localMonaco: any;
 monaco
     .init()
@@ -59,6 +59,21 @@ function ApiGuide(props: any): React.ReactElement {
         currentSelection = props.editorRef.current.deltaDecorations([], highlightConfig);
 
     }
+    const tabsContent = () => {
+        if (selected === "guide")
+            return (
+                <>
+                    <Steps key={stepIndex} {...config.steps[stepIndex]} changeDoneChecklist={changeDoneChecklist} />
+                    <ProgressIndicatorWithError changeStep={changeStepIndexFunction} steps={error} />
+                </>
+            )
+            return (
+                <>
+               <Help editorRef= {props.editorRef}/>
+                </>
+            )
+
+    }
     return (
         <div className="rainbow-flex rainbow-flex_column rainbow_vertical-stretch" style={{ minWidth: "700px", }} >
             <Tabset
@@ -88,9 +103,7 @@ function ApiGuide(props: any): React.ReactElement {
                     }
                 />
             </Tabset>
-            <Steps key={stepIndex} {...config.steps[stepIndex]} changeDoneChecklist={changeDoneChecklist} />
-            <ProgressIndicatorWithError changeStep={changeStepIndexFunction} steps={error} />
-
+              {tabsContent()}
         </div>
     )
 }

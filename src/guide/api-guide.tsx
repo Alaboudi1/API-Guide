@@ -63,7 +63,7 @@ function ApiGuide(props: any): React.ReactElement {
         if (selected === "guide")
             return (
                 <>
-                    <Steps key={stepIndex} {...config.steps[stepIndex]} changeDoneChecklist={changeDoneChecklist} />
+                    <Steps key={stepIndex} label={`Step ${stepIndex}/${config.steps.length-1}`} {...config.steps[stepIndex]} changeDoneChecklist={changeDoneChecklist} />
                     <ProgressIndicatorWithError changeStep={changeStepIndexFunction} steps={error} />
                 </>
             )

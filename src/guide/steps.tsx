@@ -48,7 +48,7 @@ function Steps(props: Istep | any): React.ReactElement {
             <div className="rainbow-p-vertical_large rainbow-p-left_xx-large" style={{minHeight:"650px"}}>
                 {<CheckboxGroup
                     id="checkbox-group-1"
-                    label="Checkbox Group Label"
+                    label= {props.label}
                     options={checkList}
                     value={checkedValues}
                     onChange={passCheckValues}

@@ -12,16 +12,16 @@ function Help(props: any): React.ReactElement {
     const getContent = () => {
         if (selectedLineContent == "")
             return (
-                <h1> Please select an API! </h1>
+                <h1 style={{ fontSize: "2em" }}> Please select an API! </h1>
             )
         else {
             const stepIndex = config.steps.findIndex(step => {
                 return step.relatedAPIs.find((api: string) => S(selectedLineContent).contains(api)) != undefined
             })
             if (stepIndex < 0)
-                return (<h1> Related API is not found! Please select another API. </h1>)
+                return (<h1 style={{ fontSize: "2em" }}> Related API is not found! Please select another API. </h1>)
             return (
-                <Steps key={stepIndex} {...config.steps[stepIndex]} changeDoneChecklist={changeDoneChecklist} />
+                <Steps key={stepIndex} label={`Step related to ${selectedLineContent} API.`} {...config.steps[stepIndex]} changeDoneChecklist={changeDoneChecklist} />
             )
         }
     }

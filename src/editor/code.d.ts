@@ -4,7 +4,7 @@ interface Iconfig {
 interface Istep {
     checks: Icheck[],
     warning?: string[],
-    relatedAPIs?: string[]
+    relatedAPIs: string[]
     done?: string[]
 
 }
@@ -22,4 +22,5 @@ interface Ieditor {
     height?: string
     value: string,
     theme? : "dark" | "light" | undefined
+    editorDidMount? : function
 }

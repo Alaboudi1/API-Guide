@@ -118,7 +118,7 @@ export const config: Iconfig = {
       relatedAPIs: [
         "React.Component",
         "this.state",
-        ".bind"
+        "bind"
       ]
     },
     {

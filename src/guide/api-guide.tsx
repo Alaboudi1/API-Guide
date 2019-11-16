@@ -3,14 +3,25 @@ import { Tabset, Tab } from 'react-rainbow-components';
 import Steps from "./steps";
 import { ProgressIndicatorWithError } from "./progress-bar";
 import { config } from '../editor/sourceCode';
+import './api-guide.css';
+import { monaco } from "@monaco-editor/react";
 
+let localMonaco: any;
+monaco
+    .init()
+    .then(monaco => localMonaco = monaco)
+    .catch(error =>
+        console.error("An error occurred during initialization of Monaco: ", error)
+    );
 
-
-function ApiGuide() {
+let currentSelection: any = [];
+function ApiGuide(props: any): React.ReactElement {
     const [selected, changeSelected] = useState('guide');
     const [stepIndex, changeStepIndex] = useState(0);
-    useEffect(() =>
+    useEffect(() => {
         changeDoneChecklist(config.steps[stepIndex].done || [])
+        highlightAPIs()
+    }
         , [stepIndex]);
     const [error, changeError] = useState(config.steps.map(_ => false));
     const initializeCheckList: string[] = [];
@@ -32,6 +43,22 @@ function ApiGuide() {
         changeStepIndex(index);
     }
 
+    const highlightAPIs = () => {
+        const apis = config.steps[stepIndex].relatedAPIs;
+        props.editorRef.current.deltaDecorations(currentSelection, []);
+        const highlightConfig: any = [];
+        apis.forEach(api => {
+            const range = props.editorRef.current.getModel().findMatches(api);
+            highlightConfig.push(...range.map((r: any) => {
+                return {
+                    range: new localMonaco.Range(r.range.startLineNumber, r.range.startColumn, r.range.endLineNumber, r.range.endColumn),
+                    options: { inlineClassName: 'myInlineDecoration' }
+                }
+            }));
+        });
+        currentSelection = props.editorRef.current.deltaDecorations([], highlightConfig);
+
+    }
     return (
         <div className="rainbow-flex rainbow-flex_column rainbow_vertical-stretch" style={{ minWidth: "700px", }} >
             <Tabset

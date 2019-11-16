@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Editor from "./editor/editor"
 import { code, config } from './editor/sourceCode'
@@ -7,8 +7,11 @@ import ApiGuide from './guide/api-guide';
 
 
 const App: React.FC = () => {
+    const editorRef: any = useRef();
+
     const [selected, changeSelected] = useState('Todo');
     const [TextCode, changeTextCode] = useState(code);
+    const [doneLoadingEditor, changeLoadingEditor] = useState(false);
     useEffect(() => {
         if (selected == "config") {
             changeTextCode(`const config = ${JSON.stringify(config)}`);
@@ -20,6 +23,16 @@ const App: React.FC = () => {
 
     const handleOnSelect = (event: React.MouseEvent<HTMLElement, MouseEvent>, selected: string) => {
         changeSelected(selected)
+    }
+    const handleEditorDidMount = (_: any, editor: any) => {
+        editorRef.current = editor;
+        changeLoadingEditor(true);
+        console.log("done");
+    }
+    const editorIsReady = () => {
+        if (doneLoadingEditor)
+            return <ApiGuide editorRef={editorRef} />
+        return <></>
     }
     return (
         <>
@@ -54,9 +67,9 @@ const App: React.FC = () => {
                             />
                         </Tabset>
                     </div>
-                    <Editor language="javascript" height="90vh" theme="dark" value={TextCode}  />
+                    <Editor language="javascript" height="90vh" theme="dark" value={TextCode} editorDidMount={handleEditorDidMount} />
                 </div>
-                <ApiGuide />
+                {editorIsReady()}
             </div>
         </>
     );

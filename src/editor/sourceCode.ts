@@ -95,7 +95,7 @@ export const config: Iconfig = {
           }
         },
         {
-          checkText: "Remove the render() method signature but keep the method body",
+          checkText: "Remove the render() method signature but keep the method body.",
           code: {
             before: `render() {\nreturn (\n<>Hello World!</>\n)}`,
             after: `return (\n<>Hello World!</>\n)`,
@@ -105,6 +105,8 @@ export const config: Iconfig = {
           checkText: "Remove any scope binding for methods.",
           code: {
             before: `this.method.bind(this);`,
+            after: ``,
+
           },
         }
       ],
@@ -133,12 +135,12 @@ export const config: Iconfig = {
           checkText: "Replace each of your component state properties with useState. ",
 
           code: {
-            before: `this.state = { property: ' ' };`,
-            after: "const [property, handlePropertyChange ] = useState(' ');"
+            before: `this.state = { property1: ' ',property2: ' '  };`,
+            after: "const [property, handlePropertyChange ] = useState(' ');\nconst [property2, handleProperty2Change ] = useState(' ')"
           },
         },
         {
-          checkText: "Replace this.setState with handlePropertyChange take from useState API. ",
+          checkText: "Replace this.setState with handlePropertyChange taken from previous step. ",
 
           code: {
             before: `this.setState(() => property: "Hello" )`,

@@ -105,7 +105,7 @@ export const config: Iconfig = {
           checkText: "Remove any scope binding for methods.",
           code: {
             before: `this.method.bind(this);`,
-            after: ``,
+            after: "//removed",
 
           },
         }
@@ -136,7 +136,7 @@ export const config: Iconfig = {
 
           code: {
             before: `this.state = { property1: ' ',property2: ' '  };`,
-            after: "const [property, handlePropertyChange ] = useState(' ');\nconst [property2, handleProperty2Change ] = useState(' ')"
+            after: "const [property1, handleProperty1Change ] = useState(' ');\nconst [property2, handleProperty2Change ] = useState(' ')"
           },
         },
         {
@@ -171,8 +171,8 @@ export const config: Iconfig = {
         {
           checkText: "Replace each of the component life (e.g., componentDidUpdate ) cycle methods with useEffect.",
           code: {
-            before: `componentDidMount() {code...}`,
-            after: `React.useEffect(() => {code...});`
+            before: "componentDidMount() {code...}",
+            after: "React.useEffect(() => {code...});",
           }
         }
       ],
